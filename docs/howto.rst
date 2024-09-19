@@ -4,7 +4,7 @@ How To - Project Documentation
 Get Started
 ----------------------------------------------------------------------
 
-Documentation can be written as rst files in `open_animal_rescue/docs`.
+Documentation can be written as rst files in `oar/docs`.
 
 
 To build and serve docs, use the commands::

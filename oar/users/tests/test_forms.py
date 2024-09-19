@@ -2,8 +2,8 @@
 
 from django.utils.translation import gettext_lazy as _
 
-from open_animal_rescue.users.forms import UserAdminCreationForm
-from open_animal_rescue.users.models import User
+from oar.users.forms import UserAdminCreationForm
+from oar.users.models import User
 
 
 class TestUserAdminCreationForm:

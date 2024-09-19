@@ -11,7 +11,7 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
 
-    image: open_animal_rescue_production_django
+    image: oar_production_django
     depends_on:
       - postgres
       - redis
@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: open_animal_rescue_production_postgres
+    image: oar_production_postgres
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: open_animal_rescue_production_traefik
+    image: oar_production_traefik
     depends_on:
       - django
     volumes:

@@ -4,7 +4,7 @@ import django.utils.timezone
 from django.db import migrations
 from django.db import models
 
-import open_animal_rescue.users.models
+import oar.users.models
 
 
 class Migration(migrations.Migration):

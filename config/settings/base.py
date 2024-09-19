@@ -6,8 +6,8 @@ from pathlib import Path
 import environ
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# open_animal_rescue/
-APPS_DIR = BASE_DIR / "open_animal_rescue"
+# oar/
+APPS_DIR = BASE_DIR / "oar"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -80,12 +80,12 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "open_animal_rescue.users",
+    "oar.users",
     # Your stuff: custom apps go here
-    "open_animal_rescue.animals",
-    "open_animal_rescue.business",
-    "open_animal_rescue.medical",
-    "open_animal_rescue.people",
+    "oar.animals",
+    "oar.business",
+    "oar.medical",
+    "oar.people",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -93,7 +93,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "open_animal_rescue.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "oar.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -188,7 +188,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "open_animal_rescue.users.context_processors.allauth_settings",
+                "oar.users.context_processors.allauth_settings",
             ],
         },
     },
@@ -271,13 +271,13 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://docs.allauth.org/en/latest/account/configuration.html
-ACCOUNT_ADAPTER = "open_animal_rescue.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "oar.users.adapters.AccountAdapter"
 # https://docs.allauth.org/en/latest/account/forms.html
-ACCOUNT_FORMS = {"signup": "open_animal_rescue.users.forms.UserSignupForm"}
+ACCOUNT_FORMS = {"signup": "oar.users.forms.UserSignupForm"}
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_ADAPTER = "open_animal_rescue.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "oar.users.adapters.SocialAccountAdapter"
 # https://docs.allauth.org/en/latest/socialaccount/configuration.html
-SOCIALACCOUNT_FORMS = {"signup": "open_animal_rescue.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_FORMS = {"signup": "oar.users.forms.UserSocialSignupForm"}
 
 
 # Your stuff...

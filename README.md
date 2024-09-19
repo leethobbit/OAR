@@ -1,4 +1,4 @@
-# Open Animal Rescue
+# Open Animal Rescue (OAR)
 
 An open-source animal rescue and shelter management application written in Python, using the Django framework.
 
@@ -27,7 +27,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy open_animal_rescue
+    $ mypy oar
 
 ### Test coverage
 

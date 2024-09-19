@@ -1,7 +1,7 @@
 import pytest
 
-from open_animal_rescue.users.models import User
-from open_animal_rescue.users.tests.factories import UserFactory
+from oar.users.models import User
+from oar.users.tests.factories import UserFactory
 
 
 @pytest.fixture(autouse=True)

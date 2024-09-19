@@ -271,7 +271,7 @@ tags
 dump.rdb
 
 ### Project template
-open_animal_rescue/media/
+oar/media/
 
 .pytest_cache/
 .ipython/

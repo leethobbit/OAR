@@ -1,6 +1,6 @@
 volumes:
-  open_animal_rescue_local_postgres_data: {}
-  open_animal_rescue_local_postgres_data_backups: {}
+  oar_local_postgres_data: {}
+  oar_local_postgres_data_backups: {}
 
 
 services:
@@ -8,8 +8,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: open_animal_rescue_local_django
-    container_name: open_animal_rescue_local_django
+    image: oar_local_django
+    container_name: oar_local_django
     depends_on:
       - postgres
     volumes:
@@ -25,10 +25,10 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: open_animal_rescue_production_postgres
-    container_name: open_animal_rescue_local_postgres
+    image: oar_production_postgres
+    container_name: oar_local_postgres
     volumes:
-      - open_animal_rescue_local_postgres_data:/var/lib/postgresql/data
-      - open_animal_rescue_local_postgres_data_backups:/backups
+      - oar_local_postgres_data:/var/lib/postgresql/data
+      - oar_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres

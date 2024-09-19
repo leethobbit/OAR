@@ -12,12 +12,12 @@ from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from open_animal_rescue.users.forms import UserAdminChangeForm
-from open_animal_rescue.users.models import User
-from open_animal_rescue.users.tests.factories import UserFactory
-from open_animal_rescue.users.views import UserRedirectView
-from open_animal_rescue.users.views import UserUpdateView
-from open_animal_rescue.users.views import user_detail_view
+from oar.users.forms import UserAdminChangeForm
+from oar.users.models import User
+from oar.users.tests.factories import UserFactory
+from oar.users.views import UserRedirectView
+from oar.users.views import UserUpdateView
+from oar.users.views import user_detail_view
 
 pytestmark = pytest.mark.django_db
 

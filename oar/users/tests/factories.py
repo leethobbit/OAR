@@ -5,7 +5,7 @@ from factory import Faker
 from factory import post_generation
 from factory.django import DjangoModelFactory
 
-from open_animal_rescue.users.models import User
+from oar.users.models import User
 
 
 class UserFactory(DjangoModelFactory[User]):

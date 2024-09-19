@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
 
-from open_animal_rescue.users.models import User
+from oar.users.models import User
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):

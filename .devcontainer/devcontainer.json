@@ -1,6 +1,6 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
-    "name": "open_animal_rescue_dev",
+    "name": "oar_dev",
     "dockerComposeFile": [
         "../docker-compose.local.yml"
     ],
