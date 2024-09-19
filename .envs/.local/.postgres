@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=open_animal_rescue
+POSTGRES_USER=OcMNzAUzgRRaYGpkIaCAbZZFrTOZDNvy
+POSTGRES_PASSWORD=t8JSLn6LqThDv3YGM32ePn0c8Woe1nG1TXNj47uMK18GkQBDxbZMhvkdB37adb4p
