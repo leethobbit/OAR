@@ -7,8 +7,28 @@ from django.urls import path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
+from iommi import Form, Page, Table, html
+
+from .menu import create_main_navbar
+from oar.animals.models import Animal, Species
+from oar.business.models import Location
+
+
+class IndexPage(Page):
+    header = html.h1("Welcome to Open Animal Rescue!")
+    logo = html.img(
+        attrs__src="static/images/dragon-4417431_1280.png",
+        attrs__style__width="50%",
+    )
+
+    animals = Table(auto__model=Animal, page_size=5)
+    species = Table(auto__model=Species, title="Species", page_size=5)
+    location = Table(auto__model=Location, page_size=5)
+    # create_animal = Form(auto__model=Animal)
+
+
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", IndexPage().as_view(), name="home"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -20,6 +40,8 @@ urlpatterns = [
     path("users/", include("oar.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("animals/", include("oar.animals.urls", namespace="animals")),
+    path("business/", include("oar.business.urls", namespace="business")),
     # ...
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),

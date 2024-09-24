@@ -9,5 +9,12 @@ class UsersConfig(AppConfig):
     verbose_name = _("Users")
 
     def ready(self):
+        from iommi import register_style
+
+        from config.style import set_base_style
+
         with contextlib.suppress(ImportError):
-            import oar.users.signals  # noqa: F401
+            import oar.users.signals  # type: ignore  # noqa: F401, PGH003
+
+        my_style = set_base_style()
+        register_style("my_style", my_style)

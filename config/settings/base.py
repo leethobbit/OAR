@@ -77,6 +77,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.mfa",
     "allauth.socialaccount",
+    "iommi",
 ]
 
 LOCAL_APPS = [
@@ -133,6 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    "iommi.live_edit.Middleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -143,6 +145,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "iommi.sql_trace.Middleware",
+    "iommi.profiling.Middleware",
+    "iommi.middleware",
 ]
 
 # STATIC
@@ -189,6 +194,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "oar.users.context_processors.allauth_settings",
+                "oar.context_processors.get_global_menu",
             ],
         },
     },
@@ -282,3 +288,4 @@ SOCIALACCOUNT_FORMS = {"signup": "oar.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+IOMMI_DEFAULT_STYLE = "my_style"
