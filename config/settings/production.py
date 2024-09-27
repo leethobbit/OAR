@@ -2,6 +2,7 @@
 from .base import *  # noqa: F403
 from .base import DATABASES
 from .base import INSTALLED_APPS
+from .base import MIDDLEWARE
 from .base import env
 
 # GENERAL
@@ -127,6 +128,10 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
 INSTALLED_APPS += ["anymail"]
+# https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#middleware
+MIDDLEWARE += [
+    "iommi.middleware",
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 # https://anymail.readthedocs.io/en/stable/esps/mailgun/

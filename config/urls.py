@@ -7,7 +7,7 @@ from django.urls import path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
-from iommi import Form, Page, Table, html
+from iommi import Action, Column, Form, Page, Table, html
 
 from .menu import create_main_navbar
 from oar.animals.models import Animal, Species
@@ -21,10 +21,22 @@ class IndexPage(Page):
         attrs__style__width="50%",
     )
 
-    animals = Table(auto__model=Animal, page_size=5)
-    species = Table(auto__model=Species, title="Species", page_size=5)
+    animals = Table(
+        auto__model=Animal,
+        page_size=5,
+        columns__name__cell__url=lambda row, **_: row.get_absolute_url(),
+    )
+    species = Table(
+        auto__model=Species,
+        title="Species",
+        page_size=5,
+        actions__create_species=Action(
+            attrs__href="/animals/species/create/",
+        ),
+        columns__edit=Column.edit(),
+        columns__delete=Column.delete(),
+    )
     location = Table(auto__model=Location, page_size=5)
-    # create_animal = Form(auto__model=Animal)
 
 
 urlpatterns = [

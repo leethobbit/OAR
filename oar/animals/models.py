@@ -36,6 +36,9 @@ class Species(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f"/animals/species/{self.id}/"
+
 
 class Animal(models.Model):
     # TODO Decide if Creator of an animal should be tracked via ForeignKey
@@ -125,6 +128,9 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return f"/animals/{self.id}/"
 
     @property
     def animal_tag(self):

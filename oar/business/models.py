@@ -14,6 +14,9 @@ class Location(models.Model):
         """
         return self.name
 
+    def get_absolute_url(self):
+        return f"/business/locations/{self}/"
+
 
 # class Meeting
 class Meeting(models.Model):

@@ -147,7 +147,6 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "iommi.sql_trace.Middleware",
     "iommi.profiling.Middleware",
-    "iommi.middleware",
 ]
 
 # STATIC
