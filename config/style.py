@@ -11,8 +11,16 @@ def set_base_style():
         bootstrap5,
         base_template="base.html",
         root__assets={
-            "oasis_5e_custom_css": Asset.css(
-                attrs__href="https://bootswatch.com/5/darkly/bootstrap.min.css"  # noqa: COM812
+            "oar_main_css": Asset.css(
+                attrs__href="https://bootswatch.com/5/darkly/bootstrap.min.css",
+                attrs__crossorigin="anonymous",
             ),
+            "oar_custom_css": Asset.css(attrs__href="/static/css/custom.css"),
+        },
+        DebugMenu={
+            "attrs__class": {
+                "bg-light": True,
+                "text-secondary-emphasis": True,
+            },
         },
     )

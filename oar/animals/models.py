@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from django.db import models
 
 # Create your models here.
@@ -45,8 +47,8 @@ class Animal(models.Model):
 
     SEX_CHOICES = [("MALE", "Male"), ("FEMALE", "Female"), ("UNKNOWN", "Unknown")]
     STATUS_CHOICES = [
-        ("PENDING", "Pending"),
-        ("ADOPTABLE", "Adoptable"),
+        ("ON_HOLD", "On Hold"),
+        ("AVAILABLE", "Available"),
         ("QUARANTINED", "Quarantined"),
         ("FOSTERED", "Fostered"),
         ("MEDICAL_HOLD", "Medical Hold"),
@@ -78,6 +80,7 @@ class Animal(models.Model):
     description = models.TextField(blank=True, null=False, default="")
     donation_fee = models.DecimalField(max_digits=10, decimal_places=2, default=5.00)
     intake_date = models.DateTimeField(auto_now_add=True)
+    vet_cleared_date = models.DateTimeField(null=True)
     outcome_date = models.DateField(null=True)
     outcome_type = models.CharField(
         max_length=80,
@@ -120,7 +123,7 @@ class Animal(models.Model):
     status = models.CharField(
         max_length=80,
         choices=STATUS_CHOICES,
-        default="ADOPTABLE",
+        default="AVAILABLE",
     )
 
     class Meta:
@@ -150,6 +153,16 @@ class Animal(models.Model):
     def number_of_medical_records(self):
         return MedicalRecord.objects.filter(animal=self).count()
 
+    @property
+    def is_recently_cleared(self):
+        """
+        Track all recently vet cleared animals. Recent means in the last 14 days.
+        """
+        today = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        vet_cleared_date = self.vet_cleared_date.replace(year=today.year)
+        plus_thirty_days = today + timezone.timedelta(days=30)
+        return today < vet_cleared_date < plus_thirty_days
+
 
 class MedicalRecord(models.Model):
     """
@@ -161,6 +174,8 @@ class MedicalRecord(models.Model):
     notes = models.TextField(max_length=500, blank=True, null=False, default="")
     current_weight = models.IntegerField(default=0)
     bowel_movement = models.BooleanField(default=True)
+    problem_list = models.TextField(max_length=500, blank=True, null=False, default="")
+    findings = models.TextField(max_length=500, blank=True, null=False, default="")
     treatments = models.TextField(max_length=500, blank=True, null=False, default="")
     q_volunteer = models.ForeignKey(Person, on_delete=models.SET_DEFAULT, default=1)
     animal = models.ForeignKey(

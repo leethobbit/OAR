@@ -11,20 +11,32 @@ def create_main_navbar():
         sub_menu={
             "home": MenuItem(url="/"),
             "animals": MenuItem(url="/animals"),
+            "species": MenuItem(url="/animals/species"),
             "people": MenuItem(url="/people"),
             "medical": MenuItem(url="/medical"),
             "business": MenuItem(url="/business"),
-            "speciestest": MenuItem(url="/animals/species"),
-            "admin": MenuItem(url="/iommi-admin"),
+            "admin": MenuItem(
+                url="/admin",
+                include=lambda request, **_: request.user.is_authenticated,
+            ),
             "login": MenuItem(
                 display_name="Log in",
-                url="/iommi-admin/login/?next=/",
+                url="/accounts/login/",
+                include=lambda request, **_: not request.user.is_authenticated,
+            ),
+            "signup": MenuItem(
+                display_name="Signup",
+                url="/accounts/signup/",
                 include=lambda request, **_: not request.user.is_authenticated,
             ),
             "log_out": MenuItem(
-                display_name="Log out",
-                url="/iommi-admin/logout/",
+                display_name="Logout",
+                url="/accounts/logout/",
                 include=lambda request, **_: request.user.is_authenticated,
+            ),
+            "feedback": MenuItem(
+                display_name="Feedback",
+                url="business/feedback/",
             ),
         },
     )

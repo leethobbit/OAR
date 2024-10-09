@@ -8,35 +8,28 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
 from iommi import Action, Column, Form, Page, Table, html
+from iommi.admin import Admin
 
-from .menu import create_main_navbar
-from oar.animals.models import Animal, Species
-from oar.business.models import Location
+import oar.animals.views as animal_views
 
 
 class IndexPage(Page):
-    header = html.h1("Welcome to Open Animal Rescue!")
+    header = html.h1("Welcome to Dragonroost!")
     logo = html.img(
         attrs__src="static/images/dragon-4417431_1280.png",
         attrs__style__width="50%",
     )
 
-    animals = Table(
-        auto__model=Animal,
-        page_size=5,
-        columns__name__cell__url=lambda row, **_: row.get_absolute_url(),
-    )
-    species = Table(
-        auto__model=Species,
-        title="Species",
-        page_size=5,
-        actions__create_species=Action(
-            attrs__href="/animals/species/create/",
-        ),
-        columns__edit=Column.edit(),
-        columns__delete=Column.delete(),
-    )
-    location = Table(auto__model=Location, page_size=5)
+    animals = animal_views.animal_table
+    species = animal_views.species_table
+
+
+class OarAdmin(Admin):
+    class Meta:
+        iommi_style = "my_style"
+        apps__animals_animal__include = True
+        apps__animals_medicalrecord__include = True
+        apps__animals_species__include = True
 
 
 urlpatterns = [
@@ -54,6 +47,11 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path("animals/", include("oar.animals.urls", namespace="animals")),
     path("business/", include("oar.business.urls", namespace="business")),
+    path("medical/", include("oar.medical.urls", namespace="medical")),
+    path("people/", include("oar.people.urls", namespace="people")),
+    path(
+        "iommi-admin/", include(OarAdmin.urls())
+    ),  # Broken due to the base urls.py being in a custom location.
     # ...
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
