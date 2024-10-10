@@ -1,11 +1,18 @@
 # Open Animal Rescue (OAR)
 
+![OAR homepage](example/oar-homepage.png)
+![OAR animal detail page](example/oar-animal-detail.png)
+
 An open-source animal rescue and shelter management application written in Python, using the Django framework.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 License: MIT
+
+## Formerly "Dragonroost"
+
+This repository is a re-implementation of [Dragonroost](https://github.com/leethobbit/dragonroost) - based on the well-known Cookiecutter-Django template for a better (and more standard) development experience. Some of the screenshots shown may contain views and templates that are not fully ported over yet, but show off some of the best features of this app.
 
 ## Settings
 
